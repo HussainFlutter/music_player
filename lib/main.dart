@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/play_pause_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
 import 'package:ui_challenge/constants.dart';
 import 'package:ui_challenge/pages/splash_page.dart';
 
 import 'bloc/song_bloc.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+    //  androidStopForegroundOnPause: false,
+  );
   runApp(const MyApp());
 }
 
@@ -33,6 +41,9 @@ class _MyAppState extends State<MyApp> {
           ),
           BlocProvider(
             create: (context) => DurationCubit(),
+          ),
+          BlocProvider(
+            create: (context) => TitleArtistCubit(),
           ),
         ],
         child: MaterialApp(

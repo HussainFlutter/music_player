@@ -21,9 +21,9 @@ class _SongPlayerState extends State<SongPlayer> {
         return Center(
             child: SfRadialGauge(axes: <RadialAxis>[
           RadialAxis(
-            minimum: 0.0,
+            minimum: -1,
             maximum: state.totalDuration.inSeconds.toDouble(),
-            startAngle: 0,
+            startAngle: -1,
             endAngle: 180,
             isInversed: true,
             showTicks: false,
@@ -45,7 +45,7 @@ class _SongPlayerState extends State<SongPlayer> {
             ],
             ranges: [
               GaugeRange(
-                startValue: 0,
+                startValue: -1,
                 endValue: state.positionDuration.inSeconds.toDouble(),
                 color: ColorsConsts.primaryColor,
               ),

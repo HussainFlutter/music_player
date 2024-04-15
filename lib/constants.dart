@@ -59,3 +59,17 @@ void customPrint({required String message}) {
   debugPrint("----------------------------------------------------");
   debugPrint("----------------- DEBUG PRINT END ------------------");
 }
+
+extension MySnackbar on String {
+  void showSnackBar({
+    required BuildContext context,
+    Color backgroundColor = ColorsConsts.primaryColor,
+  }) =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          duration: const Duration(seconds: 1),
+          backgroundColor: backgroundColor,
+          content: Text(this),
+        ),
+      );
+}

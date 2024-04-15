@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
 import 'package:ui_challenge/constants.dart';
 import 'package:ui_challenge/pages/player_page/widgets/song_player.dart';
 
@@ -10,9 +11,7 @@ import 'widgets/music_player_actions.dart';
 import 'widgets/title_and_fav_icon.dart';
 
 class PlayerPage extends StatefulWidget {
-  final String title;
-  final String? artist;
-  const PlayerPage({super.key, required this.title, required this.artist});
+  const PlayerPage({super.key});
 
   @override
   State<PlayerPage> createState() => _PlayerPageState();
@@ -48,10 +47,18 @@ class _PlayerPageState extends State<PlayerPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TitleAndFavIcon(
-                    title: widget.title,
-                  ),
-                  MyText(text: widget.artist ?? "Unknown"),
+                  BlocBuilder<TitleArtistCubit, TitleArtistState>(
+                      builder: (context, state) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TitleAndFavIcon(
+                          title: state.title,
+                        ),
+                        MyText(text: state.artist ?? "Unknown"),
+                      ],
+                    );
+                  }),
                   0.05.sizeH(context),
                   BlocBuilder<DurationCubit, DurationState>(
                       builder: (context, state) {
@@ -64,8 +71,10 @@ class _PlayerPageState extends State<PlayerPage> {
                   }),
                   0.05.sizeH(context),
                   MusicPlayerActions(
-                    next: () {},
-                    previous: () {},
+                    next: () =>
+                        context.read<PlayPauseCubit>().nextSong(context),
+                    previous: () =>
+                        context.read<PlayPauseCubit>().prevSong(context),
                     skip10Secs: () =>
                         context.read<DurationCubit>().skip10Secs(),
                     rewind10Secs: () =>

@@ -4,10 +4,10 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
 import 'package:ui_challenge/constants.dart';
 import 'package:ui_challenge/pages/details_pages/widgets/app_bar_widget.dart';
-import 'package:ui_challenge/pages/player_page/player_page.dart';
 import 'package:ui_challenge/widgets/myTextWidget.dart';
 
 import '../../bloc/player_bloc/play_pause_cubit.dart';
+import '../player_page/player_page.dart';
 import 'widgets/custom_list_tile.dart';
 
 class TracksPage extends StatelessWidget {
@@ -29,21 +29,20 @@ class TracksPage extends StatelessWidget {
           : ListView.builder(
               itemCount: songs!.length,
               itemBuilder: (context, index) {
-                final data = songs![index];
+                final data = songs!;
                 return GestureDetector(
                   onTap: () {
-                    context.read<PlayPauseCubit>().playAudio(data.data);
+                    context
+                        .read<PlayPauseCubit>()
+                        .playAudio(data, context, index);
                     context.read<DurationCubit>().giveDuration();
-                    PlayerPage(
-                      title: data.title,
-                      artist: data.artist,
-                    ).navigate(context);
+                    const PlayerPage().navigate(context);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomListTile(
-                      title: data.title,
-                      artist: data.artist,
+                      title: data[index].title,
+                      artist: data[index].artist,
                     ),
                   ),
                 );

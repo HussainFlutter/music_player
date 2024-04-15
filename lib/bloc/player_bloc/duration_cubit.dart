@@ -17,7 +17,7 @@ class DurationCubit extends Cubit<DurationState> {
       emit(
         DurationState(
           positionDuration: event,
-          totalDuration: player.duration!,
+          totalDuration: player.duration ?? Duration.zero,
         ),
       );
     });
