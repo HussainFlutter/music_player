@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/play_pause_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
 import 'package:ui_challenge/constants.dart';
 import 'package:ui_challenge/pages/splash_page.dart';
@@ -37,13 +39,19 @@ class _MyAppState extends State<MyApp> {
             create: (context) => SongBloc(),
           ),
           BlocProvider(
-            create: (context) => PlayPauseCubit(),
+            create: (context) => AudioPlayerRepoCubit(),
           ),
           BlocProvider(
             create: (context) => DurationCubit(),
           ),
           BlocProvider(
             create: (context) => TitleArtistCubit(),
+          ),
+          BlocProvider(
+            create: (context) => ShuffleCubit(),
+          ),
+          BlocProvider(
+            create: (context) => RepeatCubit(),
           ),
         ],
         child: MaterialApp(

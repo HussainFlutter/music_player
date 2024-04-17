@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ui_challenge/bloc/player_bloc/play_pause_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
 
 import '../../../constants.dart';
 
@@ -43,7 +43,7 @@ class MusicPlayerActions extends StatelessWidget {
             borderRadius: BorderRadius.circular(200),
             color: ColorsConsts.primaryColor,
           ),
-          child: BlocBuilder<PlayPauseCubit, ChangePlayerIconState>(
+          child: BlocBuilder<AudioPlayerRepoCubit, ChangePlayerIconState>(
             builder: (context, state) {
               return IconButton(
                   onPressed: playPause,

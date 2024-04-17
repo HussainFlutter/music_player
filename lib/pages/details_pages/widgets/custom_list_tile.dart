@@ -7,7 +7,9 @@ import '../../../widgets/myTextWidget.dart';
 class CustomListTile extends StatelessWidget {
   final String title;
   final String? artist;
-  const CustomListTile({super.key, required this.title, required this.artist});
+  final VoidCallback? onTap;
+  const CustomListTile(
+      {super.key, required this.title, required this.artist, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,7 @@ class CustomListTile extends StatelessWidget {
           color: ColorsConsts.containerColor,
           borderRadius: BorderRadius.circular(10)),
       child: ListTile(
+        onTap: onTap,
         leading: SvgPicture.asset(AssetsConsts.arrowSvg),
         title: MyText(
           text: title,

@@ -1,4 +1,4 @@
-part of 'play_pause_cubit.dart';
+part of 'audio_player_repo_cubit.dart';
 
 class ChangePlayerIconState extends Equatable {
   final bool isPlaying;

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
 import 'package:ui_challenge/constants.dart';
 import 'package:ui_challenge/pages/player_page/widgets/song_player.dart';
 
-import '../../bloc/player_bloc/play_pause_cubit.dart';
+import '../../bloc/player_bloc/audio_player_repo_cubit.dart';
 import '../../widgets/myTextWidget.dart';
 import 'widgets/music_player_actions.dart';
 import 'widgets/title_and_fav_icon.dart';
@@ -18,6 +20,12 @@ class PlayerPage extends StatefulWidget {
 }
 
 class _PlayerPageState extends State<PlayerPage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AudioPlayerRepoCubit>().listenForLoopMode(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,18 +80,21 @@ class _PlayerPageState extends State<PlayerPage> {
                   0.05.sizeH(context),
                   MusicPlayerActions(
                     next: () =>
-                        context.read<PlayPauseCubit>().nextSong(context),
+                        context.read<AudioPlayerRepoCubit>().nextSong(context),
                     previous: () =>
-                        context.read<PlayPauseCubit>().prevSong(context),
+                        context.read<AudioPlayerRepoCubit>().prevSong(context),
                     skip10Secs: () =>
                         context.read<DurationCubit>().skip10Secs(),
                     rewind10Secs: () =>
                         context.read<DurationCubit>().rewind10Secs(),
                     playPause: () {
-                      if (context.read<PlayPauseCubit>().state.isPlaying) {
-                        context.read<PlayPauseCubit>().pause();
+                      if (context
+                          .read<AudioPlayerRepoCubit>()
+                          .state
+                          .isPlaying) {
+                        context.read<AudioPlayerRepoCubit>().pause();
                       } else {
-                        context.read<PlayPauseCubit>().resume();
+                        context.read<AudioPlayerRepoCubit>().resume();
                       }
                     },
                   ),
@@ -93,6 +104,49 @@ class _PlayerPageState extends State<PlayerPage> {
           ],
         ),
       ),
+      bottomNavigationBar:
+          BlocBuilder<RepeatCubit, RepeatState>(builder: (context, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            BlocBuilder<ShuffleCubit, ShuffleState>(
+              builder: (context, state) {
+                return IconButton(
+                    onPressed: () => context
+                        .read<AudioPlayerRepoCubit>()
+                        .startShuffle(context, !state.isShuffling),
+                    icon: Icon(
+                      Icons.shuffle,
+                      color: state.isShuffling
+                          ? ColorsConsts.primaryColor
+                          : ColorsConsts.textColor,
+                    ));
+              },
+            ),
+            IconButton(
+                onPressed: () => state.isRepeatingAll
+                    ? context.read<AudioPlayerRepoCubit>().repeatOff
+                    : context.read<AudioPlayerRepoCubit>().repeatAll,
+                icon: Icon(
+                  Icons.repeat,
+                  color: state.isRepeatingAll
+                      ? ColorsConsts.primaryColor
+                      : ColorsConsts.textColor,
+                )),
+            IconButton(
+              onPressed: () => state.isRepeatingOne
+                  ? context.read<AudioPlayerRepoCubit>().repeatOff
+                  : context.read<AudioPlayerRepoCubit>().repeatOnce,
+              icon: Icon(
+                Icons.repeat_one,
+                color: state.isRepeatingOne
+                    ? ColorsConsts.primaryColor
+                    : ColorsConsts.textColor,
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

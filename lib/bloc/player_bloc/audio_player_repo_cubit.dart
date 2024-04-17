@@ -4,13 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
 import 'package:ui_challenge/constants.dart';
 
-part 'play_pause_state.dart';
+part 'audio_player_repo_state.dart';
 
-class PlayPauseCubit extends Cubit<ChangePlayerIconState> {
-  PlayPauseCubit() : super(const ChangePlayerIconState(isPlaying: true));
+class AudioPlayerRepoCubit extends Cubit<ChangePlayerIconState> {
+  AudioPlayerRepoCubit() : super(const ChangePlayerIconState(isPlaying: true));
   static final AudioPlayer player = AudioPlayer();
   int index = 0;
   int listLength = 0;
@@ -26,7 +28,7 @@ class PlayPauseCubit extends Cubit<ChangePlayerIconState> {
     context
         .read<TitleArtistCubit>()
         .giveTitleArtist(songs[i].title, songs[i].artist);
-    var songsList = songs
+    final List<UriAudioSource> songsList = songs
         .map(
           (e) => AudioSource.uri(
             Uri.parse(e.data),
@@ -58,6 +60,11 @@ class PlayPauseCubit extends Cubit<ChangePlayerIconState> {
     await player.pause();
   }
 
+  void startShuffle(BuildContext context, bool shuffle) async {
+    context.read<ShuffleCubit>().changeShuffle(shuffle);
+    await player.setShuffleModeEnabled(shuffle);
+  }
+
   void nextSong(BuildContext context) async {
     if (index + 1 < listLength) {
       await player.seekToNext();
@@ -73,4 +80,20 @@ class PlayPauseCubit extends Cubit<ChangePlayerIconState> {
       "No song to go back to".showSnackBar(context: context);
     }
   }
+
+  void listenForLoopMode(BuildContext context) {
+    player.loopModeStream.listen((event) {
+      if (event == LoopMode.all) {
+        context.read<RepeatCubit>().repeatAll();
+      } else if (event == LoopMode.one) {
+        context.read<RepeatCubit>().repeatOnce();
+      } else if (event == LoopMode.off) {
+        context.read<RepeatCubit>().repeatOff();
+      }
+    });
+  }
+
+  void get repeatOnce => player.setLoopMode(LoopMode.one);
+  void get repeatAll => player.setLoopMode(LoopMode.all);
+  void get repeatOff => player.setLoopMode(LoopMode.off);
 }

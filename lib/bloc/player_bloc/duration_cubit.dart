@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:ui_challenge/bloc/player_bloc/play_pause_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
 
 part 'duration_state.dart';
 
@@ -11,7 +11,7 @@ class DurationCubit extends Cubit<DurationState> {
           positionDuration: Duration.zero,
           totalDuration: Duration.zero,
         ));
-  final AudioPlayer player = PlayPauseCubit.player;
+  final AudioPlayer player = AudioPlayerRepoCubit.player;
   void giveDuration() {
     player.positionStream.listen((event) {
       emit(
