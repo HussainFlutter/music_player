@@ -12,12 +12,12 @@ import 'widgets/custom_list_tile.dart';
 
 class TracksPage extends StatelessWidget {
   final List<SongModel>? songs;
-  final bool isAlbum;
+  final bool isOtherPage;
   final String? appBarTitle;
   const TracksPage({
     super.key,
     required this.songs,
-    this.isAlbum = false,
+    this.isOtherPage = false,
     this.appBarTitle,
   });
 
@@ -25,7 +25,7 @@ class TracksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
-        title: isAlbum == false ? "Tracks" : appBarTitle ?? "Tracks",
+        title: isOtherPage == false ? "Tracks" : appBarTitle ?? "Tracks",
       ),
       body: songs == null || songs!.isEmpty
           ? const Center(

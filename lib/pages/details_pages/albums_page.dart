@@ -17,8 +17,9 @@ class AlbumsPage extends StatefulWidget {
 
 class _AlbumsPageState extends State<AlbumsPage> {
   List<SongModel>? newSongsList = [];
-  Future<List<SongModel>?> parseList(
-      int i, List<SongModel>? newSongsList) async {
+
+  Future<List<SongModel>?> parseList(int i) async {
+    List<SongModel>? songsList = [];
     if (widget.songs!.isNotEmpty && widget.songs != null) {
       for (final song in widget.songs!) {
         final String string1 = song.data.toLowerCase().trim();
@@ -29,12 +30,12 @@ class _AlbumsPageState extends State<AlbumsPage> {
         if (containsString2) {
           print(string1);
           print(string2);
-          newSongsList?.add(song);
+          songsList.add(song);
         }
       }
-      return newSongsList;
+      return songsList;
     } else {
-      newSongsList = null;
+      songsList = null;
     }
     return null;
   }
@@ -60,11 +61,10 @@ class _AlbumsPageState extends State<AlbumsPage> {
                   child: CustomListTile(
                     onTap: () async {
                       newSongsList!.clear();
-                      final List<SongModel>? fetchedSongs =
-                          await parseList(i, newSongsList);
+                      newSongsList = await parseList(i);
                       TracksPage(
-                        songs: fetchedSongs,
-                        isAlbum: true,
+                        songs: newSongsList,
+                        isOtherPage: true,
                         appBarTitle: album.album,
                       ).navigate(context);
                     },

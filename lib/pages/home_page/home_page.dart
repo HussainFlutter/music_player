@@ -82,7 +82,10 @@ class _HomePageState extends State<HomePage> {
                     items: widget.artists?.length.toString() ?? "0",
                     icon: Icons.person,
                     title: "Artists",
-                    onTap: () => const ArtistsPage().navigate(context),
+                    onTap: () => ArtistsPage(
+                      artists: widget.artists,
+                      songs: widget.songs,
+                    ).navigate(context),
                   ),
                 ],
               ),
