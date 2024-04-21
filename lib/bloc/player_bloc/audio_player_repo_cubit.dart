@@ -19,6 +19,7 @@ class AudioPlayerRepoCubit extends Cubit<ChangePlayerIconState> {
   void playAudio(List<SongModel> songs, BuildContext context, int i) async {
     index = i;
     listLength = songs.length;
+    listenForPlayerState();
     player.currentIndexStream.listen((event) {
       index = event!;
       context
@@ -48,16 +49,6 @@ class AudioPlayerRepoCubit extends Cubit<ChangePlayerIconState> {
     player.seek(const Duration(seconds: 0), index: i);
     emit(const ChangePlayerIconState(isPlaying: true));
     await player.play();
-  }
-
-  void resume() async {
-    emit(const ChangePlayerIconState(isPlaying: true));
-    await player.play();
-  }
-
-  void pause() async {
-    emit(const ChangePlayerIconState(isPlaying: false));
-    await player.pause();
   }
 
   void startShuffle(BuildContext context, bool shuffle) async {
@@ -93,7 +84,15 @@ class AudioPlayerRepoCubit extends Cubit<ChangePlayerIconState> {
     });
   }
 
+  void listenForPlayerState() {
+    player.playerStateStream.listen((event) {
+      emit(ChangePlayerIconState(isPlaying: event.playing));
+    });
+  }
+
   void get repeatOnce => player.setLoopMode(LoopMode.one);
   void get repeatAll => player.setLoopMode(LoopMode.all);
   void get repeatOff => player.setLoopMode(LoopMode.off);
+  void get resume async => await player.play();
+  void get pause async => await player.pause();
 }

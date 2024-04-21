@@ -92,9 +92,9 @@ class _PlayerPageState extends State<PlayerPage> {
                           .read<AudioPlayerRepoCubit>()
                           .state
                           .isPlaying) {
-                        context.read<AudioPlayerRepoCubit>().pause();
+                        context.read<AudioPlayerRepoCubit>().pause;
                       } else {
-                        context.read<AudioPlayerRepoCubit>().resume();
+                        context.read<AudioPlayerRepoCubit>().resume;
                       }
                     },
                   ),
