@@ -16,7 +16,6 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     context.read<SongBloc>().add(GetSongsEvent(context: context));
-    //print(context.read<SongsLoaded>().songs);
   }
 
   @override

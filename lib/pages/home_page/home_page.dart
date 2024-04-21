@@ -5,7 +5,6 @@ import 'package:ui_challenge/constants.dart';
 import 'package:ui_challenge/pages/details_pages/albums_page.dart';
 import 'package:ui_challenge/pages/details_pages/artists_page.dart';
 import 'package:ui_challenge/pages/details_pages/favorite_page.dart';
-import 'package:ui_challenge/pages/details_pages/folders_page.dart';
 import 'package:ui_challenge/pages/details_pages/genre_page.dart';
 import 'package:ui_challenge/pages/details_pages/playlist_page.dart';
 import 'package:ui_challenge/pages/details_pages/tracks_page.dart';
@@ -97,13 +96,20 @@ class _HomePageState extends State<HomePage> {
                     items: widget.genres?.length.toString() ?? "0",
                     icon: Icons.queue_music,
                     title: "Genres",
-                    onTap: () => const GenrePage().navigate(context),
+                    onTap: () => GenrePage(
+                      genreList: widget.genres,
+                      songs: widget.songs,
+                    ).navigate(context),
                   ),
                   CategoryContainer(
                     items: widget.albums?.length.toString() ?? "0",
                     icon: Icons.folder,
                     title: "Folders",
-                    onTap: () => const FoldersPage().navigate(context),
+                    onTap: () => AlbumsPage(
+                      folder: "Folders",
+                      albums: widget.albums,
+                      songs: widget.songs,
+                    ).navigate(context),
                   ),
                   CategoryContainer(
                       items: "No",
@@ -120,7 +126,10 @@ class _HomePageState extends State<HomePage> {
                     items: widget.playlists?.length.toString() ?? "0",
                     icon: Icons.audiotrack_sharp,
                     title: "Playlists",
-                    onTap: () => const PlaylistPage().navigate(context),
+                    onTap: () => PlaylistPage(
+                      playLists: widget.playlists,
+                      songs: widget.songs,
+                    ).navigate(context),
                   ),
                 ],
               ),

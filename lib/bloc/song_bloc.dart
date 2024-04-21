@@ -29,7 +29,6 @@ class SongBloc extends Bloc<SongEvent, SongState> {
         final genres = await audioQuery.queryGenres();
         final playlists = await audioQuery.queryPlaylists();
         final songs = await audioQuery.querySongs();
-        await Future.delayed(const Duration(seconds: 1));
         if (event.context.mounted) {
           Navigator.pushReplacement(
             event.context,

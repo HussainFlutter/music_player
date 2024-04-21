@@ -6,10 +6,10 @@ import '../../../widgets/myTextWidget.dart';
 
 class CustomListTile extends StatelessWidget {
   final String title;
-  final String? artist;
+  final String? subtitle;
   final VoidCallback? onTap;
   const CustomListTile(
-      {super.key, required this.title, required this.artist, this.onTap});
+      {super.key, required this.title, required this.subtitle, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class CustomListTile extends StatelessWidget {
           maxLines: 1,
         ),
         subtitle: MyText(
-          text: artist ?? "Unknown",
+          text: subtitle ?? "Unknown",
         ),
       ),
     );
