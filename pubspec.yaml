@@ -44,6 +44,8 @@ dependencies:
   flutter_bloc:
   equatable:
   just_audio_background: ^0.0.1-beta.11
+  hive: ^2.2.3
+  uuid: ^4.4.0
 
 
 dev_dependencies:

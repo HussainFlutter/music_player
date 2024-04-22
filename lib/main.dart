@@ -7,9 +7,12 @@ import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
 import 'package:ui_challenge/constants.dart';
+import 'package:ui_challenge/hive_repo.dart';
 import 'package:ui_challenge/pages/splash_page.dart';
 
 import 'bloc/song_bloc.dart';
+
+final HiveRepo favoriteSongsRepo = HiveRepo();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,8 +20,8 @@ void main() async {
     androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
     androidNotificationChannelName: 'Audio playback',
     androidNotificationOngoing: true,
-    //  androidStopForegroundOnPause: false,
   );
+  await favoriteSongsRepo.openBox;
   runApp(const MyApp());
 }
 
