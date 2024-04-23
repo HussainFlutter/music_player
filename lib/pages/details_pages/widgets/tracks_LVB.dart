@@ -18,20 +18,20 @@ class TracksListViewBuilder extends StatelessWidget {
       itemCount: songs.length,
       itemBuilder: (context, index) {
         final data = songs;
-        return GestureDetector(
-          onTap: () {
-            context
-                .read<AudioPlayerRepoCubit>()
-                .playAudio(data, context, index);
-            context.read<DurationCubit>().giveDuration();
-            const PlayerPage().navigate(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CustomListTile(
-              title: data[index].title,
-              subtitle: data[index].artist,
-            ),
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CustomListTile(
+            onTap: () {
+              context
+                  .read<AudioPlayerRepoCubit>()
+                  .playAudio(data, context, index);
+              context.read<DurationCubit>().giveDuration();
+              PlayerPage(
+                songModel: data[index],
+              ).navigate(context);
+            },
+            title: data[index].title,
+            subtitle: data[index].artist,
           ),
         );
       },

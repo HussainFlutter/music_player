@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:ui_challenge/bloc/favorite_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
@@ -17,38 +18,47 @@ class AudioPlayerRepoCubit extends Cubit<ChangePlayerIconState> {
   int index = 0;
   int listLength = 0;
   void playAudio(List<SongModel> songs, BuildContext context, int i) async {
-    index = i;
-    listLength = songs.length;
-    listenForPlayerState();
-    player.currentIndexStream.listen((event) {
-      index = event!;
+    try {
+      index = i;
+      listLength = songs.length;
+      listenForPlayerState();
+      player.currentIndexStream.listen((event) {
+        index = event ?? 0;
+        context
+            .read<TitleArtistCubit>()
+            .giveTitleArtist(songs[event ?? 0].title, songs[event ?? 0].artist);
+        final id = player.audioSource?.sequence[index].tag as MediaItem;
+        context.read<FavoriteCubit>().isFavorite(int.parse(id.id));
+      });
       context
           .read<TitleArtistCubit>()
-          .giveTitleArtist(songs[event].title, songs[event].artist);
-    });
-    context
-        .read<TitleArtistCubit>()
-        .giveTitleArtist(songs[i].title, songs[i].artist);
-    final List<UriAudioSource> songsList = songs
-        .map(
-          (e) => AudioSource.uri(
-            Uri.parse(e.data),
-            tag: MediaItem(
-              artist: e.artist ?? "Unknown",
-              id: e.id.toString(),
-              title: e.title,
-            ),
+          .giveTitleArtist(songs[i].title, songs[i].artist);
+      //print(songs);
+      final List<UriAudioSource> songsList = songs.map((e) {
+        // print(e.data);
+        // print(e.artist);
+        // print(e.id);
+        //  print(e.title);
+        return AudioSource.uri(
+          Uri.parse(e.data),
+          tag: MediaItem(
+            artist: e.artist ?? "Unknown",
+            id: e.id.toString(),
+            title: e.title,
           ),
-        )
-        .toList();
-    await player.setAudioSource(
-      ConcatenatingAudioSource(
-        children: songsList,
-      ),
-    );
-    player.seek(const Duration(seconds: 0), index: i);
-    emit(const ChangePlayerIconState(isPlaying: true));
-    await player.play();
+        );
+      }).toList();
+      await player.setAudioSource(
+        ConcatenatingAudioSource(
+          children: songsList,
+        ),
+      );
+      player.seek(const Duration(seconds: 0), index: i);
+      emit(const ChangePlayerIconState(isPlaying: true));
+      await player.play();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   void startShuffle(BuildContext context, bool shuffle) async {

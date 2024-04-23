@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:ui_challenge/bloc/favorite_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
@@ -40,6 +41,9 @@ class _MyAppState extends State<MyApp> {
         providers: [
           BlocProvider(
             create: (context) => SongBloc(),
+          ),
+          BlocProvider(
+            create: (context) => FavoriteCubit(),
           ),
           BlocProvider(
             create: (context) => AudioPlayerRepoCubit(),

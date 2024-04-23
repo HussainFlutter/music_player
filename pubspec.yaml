@@ -46,6 +46,7 @@ dependencies:
   just_audio_background: ^0.0.1-beta.11
   hive: ^2.2.3
   uuid: ^4.4.0
+  path_provider:
 
 
 dev_dependencies:

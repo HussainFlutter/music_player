@@ -1,40 +1,45 @@
 import 'package:equatable/equatable.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class FavoriteSongModel extends Equatable {
-  final String? id;
-  final String? uri;
+  final int? id;
+  final String? data;
   final String? title;
   final String? artist;
 
   const FavoriteSongModel({
     this.id,
-    this.uri,
+    this.data,
     this.title,
     this.artist,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      "id": id,
-      "uri": uri,
+      "_id": id,
+      "_data": data,
       "title": title,
       "artist": artist,
     };
   }
 
-  factory FavoriteSongModel.fromMap(Map<String, dynamic> map) {
+  factory FavoriteSongModel.fromMap(Map<dynamic, dynamic> map) {
     return FavoriteSongModel(
-      id: map["id"],
-      uri: map["uri"],
+      id: map["_id"],
+      data: map["_data"],
       title: map["title"],
       artist: map["artist"] ?? "Unknown",
     );
   }
 
+  SongModel toSongModelFav() => SongModel(
+        toMap(),
+      );
+
   @override
   List<Object?> get props => [
         id,
-        uri,
+        data,
         title,
         artist,
       ];

@@ -13,7 +13,6 @@ class SongPlayer extends StatefulWidget {
 }
 
 class _SongPlayerState extends State<SongPlayer> {
-  //double pointerValue = 100;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DurationCubit, DurationState>(
