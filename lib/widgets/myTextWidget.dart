@@ -7,6 +7,7 @@ class MyText extends StatelessWidget {
   final double letterSpacing;
   final bool isBold;
   final int? maxLines;
+  final Color textColor;
   const MyText({
     super.key,
     required this.text,
@@ -14,6 +15,7 @@ class MyText extends StatelessWidget {
     this.maxLines,
     this.isBold = false,
     this.letterSpacing = 0,
+    this.textColor = ColorsConsts.textColor,
   });
 
   @override
@@ -23,7 +25,7 @@ class MyText extends StatelessWidget {
       textScaler: TextScaler.linear(size),
       maxLines: maxLines,
       style: TextStyle(
-        color: ColorsConsts.textColor,
+        color: textColor,
         fontWeight: isBold == true ? FontWeight.bold : FontWeight.normal,
         letterSpacing: letterSpacing,
       ),

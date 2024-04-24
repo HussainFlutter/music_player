@@ -10,6 +10,7 @@ import 'package:ui_challenge/pages/details_pages/playlist_page.dart';
 import 'package:ui_challenge/pages/details_pages/tracks_page.dart';
 import 'package:ui_challenge/widgets/myTextWidget.dart';
 
+import '../../widgets/dialog.dart';
 import 'widgets/category_container.dart';
 
 class HomePage extends StatefulWidget {
@@ -136,6 +137,16 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => showDialog(
+          builder: (context) => MyAlertDialog(
+            onYesTap: () {},
+            title: 'Delete',
+            description: 'Do you want to delete this file',
+          ),
+          context: context,
         ),
       ),
     );

@@ -10,6 +10,9 @@ import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
 import 'package:ui_challenge/constants.dart';
 
+import '../../favorite_song_model.dart';
+import '../../main.dart';
+
 part 'audio_player_repo_state.dart';
 
 class AudioPlayerRepoCubit extends Cubit<ChangePlayerIconState> {
@@ -33,19 +36,16 @@ class AudioPlayerRepoCubit extends Cubit<ChangePlayerIconState> {
       context
           .read<TitleArtistCubit>()
           .giveTitleArtist(songs[i].title, songs[i].artist);
-      //print(songs);
       final List<UriAudioSource> songsList = songs.map((e) {
-        // print(e.data);
-        // print(e.artist);
-        // print(e.id);
-        //  print(e.title);
         return AudioSource.uri(
           Uri.parse(e.data),
           tag: MediaItem(
-            artist: e.artist ?? "Unknown",
-            id: e.id.toString(),
-            title: e.title,
-          ),
+              artist: e.artist ?? "Unknown",
+              id: e.id.toString(),
+              title: e.title,
+              extras: {
+                "data": e.data,
+              }),
         );
       }).toList();
       await player.setAudioSource(
@@ -98,6 +98,28 @@ class AudioPlayerRepoCubit extends Cubit<ChangePlayerIconState> {
     player.playerStateStream.listen((event) {
       emit(ChangePlayerIconState(isPlaying: event.playing));
     });
+  }
+
+  void get addToFavorite {
+    final currentSong = player.audioSource?.sequence[index].tag as MediaItem;
+    favoriteSongsRepo.addToFavorite(
+      FavoriteSongModel(
+        id: int.parse(currentSong.id),
+        title: currentSong.title,
+        artist: currentSong.artist,
+        data: currentSong.extras!["data"],
+      ),
+    );
+  }
+
+  void get removeFromFavoritesList {
+    final currentSong = player.audioSource?.sequence[index].tag as MediaItem;
+    favoriteSongsRepo.removeFromFavorite(int.parse(currentSong.id));
+  }
+
+  void isFavorite(BuildContext context) {
+    final currentSong = player.audioSource?.sequence[index].tag as MediaItem;
+    context.read<FavoriteCubit>().isFavorite(int.parse(currentSong.id));
   }
 
   void get repeatOnce => player.setLoopMode(LoopMode.one);

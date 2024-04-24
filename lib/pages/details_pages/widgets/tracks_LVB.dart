@@ -21,14 +21,14 @@ class TracksListViewBuilder extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: CustomListTile(
-            onTap: () {
+            onTap: () async {
               context
                   .read<AudioPlayerRepoCubit>()
                   .playAudio(data, context, index);
               context.read<DurationCubit>().giveDuration();
-              PlayerPage(
-                songModel: data[index],
-              ).navigate(context);
+              // We wait for position and total duration to load and for sf radius to load properly
+              await Future.delayed(const Duration(milliseconds: 200));
+              const PlayerPage().navigate(context);
             },
             title: data[index].title,
             subtitle: data[index].artist,

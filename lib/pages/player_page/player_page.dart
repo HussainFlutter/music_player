@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
 import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
@@ -14,8 +13,7 @@ import 'widgets/music_player_actions.dart';
 import 'widgets/title_and_fav_icon.dart';
 
 class PlayerPage extends StatefulWidget {
-  final SongModel songModel;
-  const PlayerPage({super.key, required this.songModel});
+  const PlayerPage({super.key});
 
   @override
   State<PlayerPage> createState() => _PlayerPageState();
@@ -64,7 +62,6 @@ class _PlayerPageState extends State<PlayerPage> {
                       children: [
                         TitleAndFavIcon(
                           title: state.title,
-                          songModel: widget.songModel,
                         ),
                         MyText(text: state.artist ?? "Unknown"),
                       ],

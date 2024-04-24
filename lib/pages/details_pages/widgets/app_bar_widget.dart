@@ -3,7 +3,8 @@ import 'package:ui_challenge/widgets/myTextWidget.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  const AppBarWidget({super.key, required this.title});
+  final List<Widget>? actions;
+  const AppBarWidget({super.key, required this.title, this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       title: MyText(
         text: title,
       ),
+      actions: actions,
     );
   }
 

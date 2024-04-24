@@ -5,6 +5,8 @@ import 'package:ui_challenge/favorite_song_model.dart';
 import 'package:ui_challenge/main.dart';
 import 'package:ui_challenge/pages/details_pages/widgets/custom_list_tile.dart';
 import 'package:ui_challenge/pages/details_pages/widgets/no_foo_found.dart';
+import 'package:ui_challenge/widgets/dialog.dart';
+import 'package:ui_challenge/widgets/myTextWidget.dart';
 
 import '../../bloc/player_bloc/audio_player_repo_cubit.dart';
 import '../../bloc/player_bloc/duration_cubit.dart';
@@ -34,28 +36,54 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidget(
+      appBar: AppBarWidget(
         title: "Favorite",
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0.1.mediaW(context)),
+            child: GestureDetector(
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => MyAlertDialog(
+                  onYesTap: () {
+                    favoriteSongsRepo.clearBox;
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  title: "Clear Favorites",
+                  description:
+                      "Are you sure you want to delete your favorite songs",
+                ),
+              ),
+              child: const MyText(
+                text: "Clear",
+                size: 1.2,
+                textColor: ColorsConsts.primaryColor,
+              ),
+            ),
+          )
+        ],
       ),
       body: favSongs!.isEmpty
           ? const NoFooFound(text: "No favorites found")
           : ListView.builder(
               itemCount: favSongs!.length,
               itemBuilder: (context, i) {
-                return CustomListTile(
-                  onTap: () {
-                    final data =
-                        favSongs!.map((e) => e.toSongModelFav()).toList();
-                    context
-                        .read<AudioPlayerRepoCubit>()
-                        .playAudio(data, context, i);
-                    context.read<DurationCubit>().giveDuration();
-                    PlayerPage(
-                      songModel: data[i],
-                    ).navigate(context);
-                  },
-                  title: favSongs![i].title!,
-                  subtitle: favSongs?[i].artist ?? "Unknown",
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomListTile(
+                    onTap: () {
+                      final data =
+                          favSongs!.map((e) => e.toSongModelFav()).toList();
+                      context
+                          .read<AudioPlayerRepoCubit>()
+                          .playAudio(data, context, i);
+                      context.read<DurationCubit>().giveDuration();
+                      const PlayerPage().navigate(context);
+                    },
+                    title: favSongs![i].title!,
+                    subtitle: favSongs?[i].artist ?? "Unknown",
+                  ),
                 );
               }),
     );

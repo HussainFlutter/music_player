@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:ui_challenge/bloc/favorite_cubit.dart';
+import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
 import 'package:ui_challenge/constants.dart';
-import 'package:ui_challenge/favorite_song_model.dart';
-import 'package:ui_challenge/main.dart';
 
 import '../../../widgets/myTextWidget.dart';
 
 class TitleAndFavIcon extends StatefulWidget {
-  final SongModel songModel;
   final String title;
 
   const TitleAndFavIcon({
     super.key,
     required this.title,
-    required this.songModel,
   });
 
   @override
@@ -26,7 +22,7 @@ class _TitleAndFavIconState extends State<TitleAndFavIcon> {
   @override
   void initState() {
     super.initState();
-    context.read<FavoriteCubit>().isFavorite(widget.songModel.id);
+    context.read<AudioPlayerRepoCubit>().isFavorite(context);
   }
 
   @override
@@ -42,18 +38,12 @@ class _TitleAndFavIconState extends State<TitleAndFavIcon> {
             return IconButton(
               onPressed: () {
                 if (state.isFavorite) {
-                  favoriteSongsRepo.removeFromFavorite(widget.songModel.id);
-                  context.read<FavoriteCubit>().isFavorite(widget.songModel.id);
+                  // Do remove
+                  context.read<AudioPlayerRepoCubit>().removeFromFavoritesList;
+                  context.read<AudioPlayerRepoCubit>().isFavorite(context);
                 } else {
-                  favoriteSongsRepo.addToFavorite(
-                    FavoriteSongModel(
-                      id: widget.songModel.id,
-                      title: widget.songModel.title,
-                      artist: widget.songModel.artist,
-                      data: widget.songModel.data,
-                    ),
-                  );
-                  context.read<FavoriteCubit>().isFavorite(widget.songModel.id);
+                  context.read<AudioPlayerRepoCubit>().addToFavorite;
+                  context.read<AudioPlayerRepoCubit>().isFavorite(context);
                 }
               },
               icon: state.isFavorite
