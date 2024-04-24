@@ -26,7 +26,7 @@ class TracksListViewBuilder extends StatelessWidget {
                   .read<AudioPlayerRepoCubit>()
                   .playAudio(data, context, index);
               context.read<DurationCubit>().giveDuration();
-              // We wait for position and total duration to load and for sf radius to load properly
+              // We wait for position and total duration to load and for sf radqius to load properly
               await Future.delayed(const Duration(milliseconds: 200));
               const PlayerPage().navigate(context);
             },
