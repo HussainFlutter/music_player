@@ -1,4 +1,4 @@
-# ui_challenge
+# Music player
 
 A new Flutter project.
 
