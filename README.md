@@ -3,7 +3,10 @@
 A sleek and feature-rich music player app that organizes and plays audio files from your phone. Designed for a seamless listening experience, this app offers advanced playback controls, customizable playlists, and intuitive audio organization.  
 
 ---
-
+## Demo Links
+- **App Demo (LinkedIn)**: [Music Player](https://www.linkedin.com/posts/hussain-ali-0805b8282_flutter-activity-7188939882101166082-R7fU?utm_source=share&utm_medium=member_desktop)
+- 
+---
 ## Features  
 
 ### **Audio Organization**  
