@@ -1,16 +1,44 @@
-# Music player
+# Music Player App  
 
-A new Flutter project.
+A sleek and feature-rich music player app that organizes and plays audio files from your phone. Designed for a seamless listening experience, this app offers advanced playback controls, customizable playlists, and intuitive audio organization.  
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Features  
 
-A few resources to get you started if this is your first Flutter project:
+### **Audio Organization**  
+- Automatically fetches audio files from your phone.  
+- Organizes tracks into:  
+  - **Tracks**: Displays all audio files.  
+  - **Albums**: Grouped by folders.  
+  - **Artists**: Categorized by artist metadata.  
+  - **Genres**: Grouped by genres.  
+  - **Favorites**: Your favorite tracks.  
+  - **Playlists**: Custom playlists created by you.  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### **Playback Controls**  
+- Play, pause, and resume audio tracks.  
+- Navigate through your music with:  
+  - **Forward 10 seconds**.  
+  - **Rewind 10 seconds**.  
+  - **Next song**.  
+  - **Previous song**.  
+- **Repeat Options**:  
+  - Repeat the current song once.  
+  - Repeat the entire folder/album.  
+- **Shuffle**: Randomize your playback for variety.  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### **Favorites**  
+- **Heart Icon**: Mark a track as a favorite by tapping the heart icon.  
+- Easily access all your favorite tracks in the **Favorites** section.  
+
+### **Background Playback**  
+- Continue enjoying your music even when:  
+  - The app is in the background.  
+  - The phone is locked.  
+- Control playback via the **foreground notification**:  
+  - Play/Pause.  
+  - Next/Previous track.  
+
+---
+
