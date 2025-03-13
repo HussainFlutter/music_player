@@ -29,15 +29,17 @@ class _AlbumsFoldersListViewBuilderState
     if (widget.songs!.isNotEmpty && widget.songs != null) {
       for (final song in widget.songs!) {
         final String string1 = song.data.toLowerCase().trim();
-        final String string2 =
-            widget.albums?[i].album.toLowerCase().trim() ?? "";
-
-        final RegExp regExp = RegExp(r'\b' + RegExp.escape(string2) + r'\b');
+        final String? string2 =
+            widget.albums?[i].album.toLowerCase().trim();
+ if (string2 != null){
+final RegExp regExp = RegExp(r'\b' + RegExp.escape(string2) + r'\b');
         final bool containsString2 = regExp.hasMatch(string1);
         if (containsString2) {
           songsList.add(song);
         }
       }
+}
+        
       return songsList;
     } else {
       songsList = null;
