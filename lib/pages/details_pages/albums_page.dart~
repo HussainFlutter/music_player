@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:on_audio_query/on_audio_query.dart';
+import 'package:ui_challenge/pages/details_pages/widgets/albums_LVB.dart';
+import 'package:ui_challenge/pages/details_pages/widgets/app_bar_widget.dart';
+import 'package:ui_challenge/pages/details_pages/widgets/no_foo_found.dart';
+
+class AlbumsPage extends StatefulWidget {
+  final List<AlbumModel>? albums;
+  final List<SongModel>? songs;
+  final String? folder;
+  const AlbumsPage({
+    super.key,
+    required this.albums,
+    required this.songs,
+    this.folder,
+  });
+
+  @override
+  State<AlbumsPage> createState() => _AlbumsPageState();
+}
+
+class _AlbumsPageState extends State<AlbumsPage> {
+  @override
+  void initState() {
+    for (final album in widget.albums!) {
+      print(album);
+    }
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBarWidget(
+        title: widget.folder != null ? widget.folder! : "Albums",
+      ),
+      body: widget.albums == null || widget.albums!.isEmpty
+          ? const NoFooFound(
+              text: 'No albums Found',
+            )
+          : AlbumsFoldersListViewBuilder(
+              albums: widget.albums,
+              songs: widget.songs,
+            ),
+    );
+  }
+}

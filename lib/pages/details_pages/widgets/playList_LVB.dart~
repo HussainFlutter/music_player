@@ -37,7 +37,7 @@ class _PlayListListViewBuilderState extends State<PlayListListViewBuilder> {
           songsList.add(song);
         }
       }
-
+      print(songsList);
       return songsList;
     } else {
       songsList = null;

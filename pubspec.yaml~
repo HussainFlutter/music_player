@@ -47,8 +47,6 @@ dependencies:
   hive: ^2.2.3
   path_provider:
 
-dependency_overrides:
-  win32: ^5.5.0
 
 dev_dependencies:
   flutter_test:

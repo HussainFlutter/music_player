@@ -31,11 +31,9 @@ class SongBloc extends Bloc<SongEvent, SongState> {
 
         final albums = await audioQuery.queryAlbums();
         final albumsWithoutPersian = albums
-            .where(
-              (album) =>
-                  !containsPersianOrUrdu(album.album) &&
-                  !album.album.contains("www."),
-            )
+            .where((album) =>
+                !containsPersianOrUrdu(album.album) &&
+                !album.album.contains("www."),)
             .toList();
 
         final artists = await audioQuery.queryArtists();

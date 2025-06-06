@@ -12,6 +12,7 @@ import 'package:ui_challenge/hive_repo.dart';
 import 'package:ui_challenge/pages/splash_page.dart';
 
 import 'bloc/song_bloc.dart';
+import 'hive_repo.dart';
 
 final HiveRepo favoriteSongsRepo = HiveRepo();
 
