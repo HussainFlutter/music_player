@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:ui_challenge/constants.dart';
-import 'package:permission_handler/permission_handler.dart';
 import '../widgets/myTextWidget.dart';
 
 class GivePermissionPage extends StatelessWidget {
