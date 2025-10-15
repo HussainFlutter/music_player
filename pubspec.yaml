@@ -12,16 +12,16 @@ dependencies:
 
   cupertino_icons: ^1.0.6
   on_audio_query: ^2.9.0
-  just_audio: ^0.9.37
-  permission_handler: ^11.3.1
-  flutter_svg: ^2.0.10+1
-  syncfusion_flutter_gauges: ^25.1.39
-  just_audio_background: ^0.0.1-beta.11
+  just_audio: ^0.10.5
+  permission_handler: ^12.0.1
+  flutter_svg: ^2.2.1
+  syncfusion_flutter_gauges: ^31.2.2
+  just_audio_background: ^0.0.1-beta.17
   hive: ^2.2.3
-  path_provider: ^2.1.1   # ✅ Added version
-  bloc: ^8.1.2             # ✅ Added version
-  flutter_bloc: ^8.1.3     # ✅ Added version
-  equatable: ^2.0.5        # ✅ Added version
+  path_provider: ^2.1.5   # ✅ Added version
+  bloc: ^9.1.0             # ✅ Added version
+  flutter_bloc: ^9.1.1     # ✅ Added version
+  equatable: ^2.0.7        # ✅ Added version
 
 dependency_overrides:
   win32: ^5.5.0
