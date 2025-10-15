@@ -20,6 +20,17 @@ class GivePermissionPage extends StatelessWidget {
                   "This app needs storage permission to work. Please give storage permission to this app and restart the app",
             ),
             0.03.sizeH(context),
+   
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ColorsConsts.containerColor,
+              ),
+              onPressed: () {
+                  const storagePermission = Permission.storage;
+                  final result = await storagePermission.request();
+              },
+              child: const MyText(text: "Ask Permission"),
+            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorsConsts.containerColor,
