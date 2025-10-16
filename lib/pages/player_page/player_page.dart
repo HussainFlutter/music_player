@@ -112,14 +112,18 @@ class _PlayerPageState extends State<PlayerPage> {
               builder: (context, state) {
                 return IconButton(
                     onPressed: () {
-                      context
-                          .read<AudioPlayerRepoCubit>()
-                          .startShuffle(context, !state.isShuffling);
-                      if(!state.isShuffling == true)
+
+                      if(state.isShuffling == false)
                         {
+                          context
+                              .read<AudioPlayerRepoCubit>()
+                              .startShuffle(context, true);
                           "Shuffle On".showSnackBar(context: context);
                         }
                       else{
+                        context
+                            .read<AudioPlayerRepoCubit>()
+                            .startShuffle(context, false);
                         "Shuffle Off".showSnackBar(context: context);
                       }
                     },
