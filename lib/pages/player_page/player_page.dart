@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
-import 'package:ui_challenge/constants.dart';
-import 'package:ui_challenge/pages/player_page/widgets/song_player.dart';
-
+import 'package:copy_music_player/pages/player_page/widgets/song_player.dart';
 import '../../bloc/player_bloc/audio_player_repo_cubit.dart';
+import '../../bloc/player_bloc/duration_cubit.dart';
+import '../../bloc/player_bloc/repeat_cubit.dart';
+import '../../bloc/player_bloc/shuffle_cubit.dart';
+import '../../bloc/player_bloc/title_artist_cubit.dart';
+import '../../constants.dart';
 import '../../widgets/myTextWidget.dart';
 import 'widgets/music_player_actions.dart';
 import 'widgets/title_and_fav_icon.dart';
@@ -112,9 +111,18 @@ class _PlayerPageState extends State<PlayerPage> {
             BlocBuilder<ShuffleCubit, ShuffleState>(
               builder: (context, state) {
                 return IconButton(
-                    onPressed: () => context
-                        .read<AudioPlayerRepoCubit>()
-                        .startShuffle(context, !state.isShuffling),
+                    onPressed: () {
+                      context
+                          .read<AudioPlayerRepoCubit>()
+                          .startShuffle(context, !state.isShuffling);
+                      if(!state.isShuffling)
+                        {
+                          "Shuffle On".showSnackBar(context: context);
+                        }
+                      else{
+                        "Shuffle Off".showSnackBar(context: context);
+                      }
+                    },
                     icon: Icon(
                       Icons.shuffle,
                       color: state.isShuffling
@@ -124,9 +132,17 @@ class _PlayerPageState extends State<PlayerPage> {
               },
             ),
             IconButton(
-                onPressed: () => state.isRepeatingAll
-                    ? context.read<AudioPlayerRepoCubit>().repeatOff
-                    : context.read<AudioPlayerRepoCubit>().repeatAll,
+                onPressed: () {
+                  if(state.isRepeatingAll)
+                    {
+                      context.read<AudioPlayerRepoCubit>().repeatOff;
+                      "Repeating Off".showSnackBar(context: context);
+                    }
+                  else{
+                    context.read<AudioPlayerRepoCubit>().repeatAll;
+                    "Repeating All".showSnackBar(context: context);
+                  }
+                },
                 icon: Icon(
                   Icons.repeat,
                   color: state.isRepeatingAll
@@ -134,9 +150,17 @@ class _PlayerPageState extends State<PlayerPage> {
                       : ColorsConsts.textColor,
                 )),
             IconButton(
-              onPressed: () => state.isRepeatingOne
-                  ? context.read<AudioPlayerRepoCubit>().repeatOff
-                  : context.read<AudioPlayerRepoCubit>().repeatOnce,
+              onPressed: () {
+                if(state.isRepeatingOne)
+                  {
+                    context.read<AudioPlayerRepoCubit>().repeatOff;
+                    "Repeating Off".showSnackBar(context: context);
+                  }
+                else{
+                  context.read<AudioPlayerRepoCubit>().repeatOnce;
+                  "Repeating One".showSnackBar(context: context);
+                }
+              },
               icon: Icon(
                 Icons.repeat_one,
                 color: state.isRepeatingOne

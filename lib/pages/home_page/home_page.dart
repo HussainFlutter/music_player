@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:copy_music_player/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:ui_challenge/constants.dart';
-import 'package:ui_challenge/pages/details_pages/albums_page.dart';
-import 'package:ui_challenge/pages/details_pages/artists_page.dart';
-import 'package:ui_challenge/pages/details_pages/favorite_page.dart';
-import 'package:ui_challenge/pages/details_pages/genre_page.dart';
-import 'package:ui_challenge/pages/details_pages/playlist_page.dart';
-import 'package:ui_challenge/pages/details_pages/tracks_page.dart';
-import 'package:ui_challenge/widgets/myTextWidget.dart';
-
+import '../../widgets/myTextWidget.dart';
+import '../details_pages/albums_page.dart';
+import '../details_pages/artists_page.dart';
+import '../details_pages/favorite_page.dart';
+import '../details_pages/genre_page.dart';
+import '../details_pages/playlist_page.dart';
+import '../details_pages/tracks_page.dart';
 import 'widgets/category_container.dart';
 
 class HomePage extends StatefulWidget {

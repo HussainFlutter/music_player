@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
+
+import 'audio_player_repo_cubit.dart';
 
 part 'duration_state.dart';
 

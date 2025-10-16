@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:copy_music_player/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:ui_challenge/constants.dart';
 
 import '../tracks_page.dart';
 import 'custom_list_tile.dart';

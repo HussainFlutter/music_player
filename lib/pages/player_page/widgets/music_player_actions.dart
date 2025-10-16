@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
-
+import '../../../bloc/player_bloc/audio_player_repo_cubit.dart';
 import '../../../constants.dart';
 
 class MusicPlayerActions extends StatelessWidget {

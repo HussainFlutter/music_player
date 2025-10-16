@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:ui_challenge/main.dart';
+import '../main.dart';
 
 part 'favorite_state.dart';
 

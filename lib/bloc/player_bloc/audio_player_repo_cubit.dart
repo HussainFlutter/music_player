@@ -3,15 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
+import 'package:copy_music_player/bloc/player_bloc/repeat_cubit.dart';
+import 'package:copy_music_player/bloc/player_bloc/shuffle_cubit.dart';
+import 'package:copy_music_player/bloc/player_bloc/title_artist_cubit.dart';
+import 'package:copy_music_player/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:ui_challenge/bloc/favorite_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
-import 'package:ui_challenge/constants.dart';
+
 
 import '../../favorite_song_model.dart';
 import '../../main.dart';
+import '../favorite_cubit.dart';
 
 part 'audio_player_repo_state.dart';
 

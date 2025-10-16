@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui_challenge/constants.dart';
+
+import '../constants.dart';
 
 class MyText extends StatelessWidget {
   final String text;

@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:ui_challenge/favorite_song_model.dart';
+
+import 'favorite_song_model.dart';
 
 class HiveRepo {
   final String _boxName = "Favorite_Tracks";

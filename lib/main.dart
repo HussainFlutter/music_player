@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:ui_challenge/bloc/favorite_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/repeat_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/shuffle_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/title_artist_cubit.dart';
-import 'package:ui_challenge/constants.dart';
-import 'package:ui_challenge/hive_repo.dart';
-import 'package:ui_challenge/pages/splash_page.dart';
+import 'package:copy_music_player/bloc/favorite_cubit.dart';
+import 'package:copy_music_player/bloc/player_bloc/audio_player_repo_cubit.dart';
+import 'package:copy_music_player/bloc/player_bloc/duration_cubit.dart';
+import 'package:copy_music_player/bloc/player_bloc/repeat_cubit.dart';
+import 'package:copy_music_player/bloc/player_bloc/shuffle_cubit.dart';
+import 'package:copy_music_player/bloc/player_bloc/title_artist_cubit.dart';
+import 'package:copy_music_player/constants.dart';
+import 'package:copy_music_player/hive_repo.dart';
+import 'package:copy_music_player/pages/splash_page.dart';
 
 import 'bloc/song_bloc.dart';
 import 'hive_repo.dart';
@@ -17,6 +17,7 @@ import 'hive_repo.dart';
 final HiveRepo favoriteSongsRepo = HiveRepo();
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await JustAudioBackground.init(
     androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',

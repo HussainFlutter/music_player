@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:copy_music_player/constants.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:ui_challenge/constants.dart';
 import '../widgets/myTextWidget.dart';
 
 class GivePermissionPage extends StatelessWidget {
@@ -14,9 +14,11 @@ class GivePermissionPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const MyText(
-              text:
-                  "This app needs storage permission to work. Please give storage permission to this app and restart the app",
+            Center(
+              child: const MyText(
+                text:
+                    "This app needs storage permission to work. Please give storage permission to this app and restart the app",
+              ),
             ),
             0.03.sizeH(context),
    
@@ -24,9 +26,11 @@ class GivePermissionPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorsConsts.containerColor,
               ),
-              onPressed: () {
+              onPressed: () async {
                   const storagePermission = Permission.storage;
-                  final result = await storagePermission.request();
+                   await storagePermission.request();
+                   await Permission.audio.request();
+                   await Permission.manageExternalStorage.request();
               },
               child: const MyText(text: "Ask Permission"),
             ),

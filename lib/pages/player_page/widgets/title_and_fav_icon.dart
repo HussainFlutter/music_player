@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ui_challenge/bloc/favorite_cubit.dart';
-import 'package:ui_challenge/bloc/player_bloc/audio_player_repo_cubit.dart';
-import 'package:ui_challenge/constants.dart';
 
+
+import '../../../bloc/favorite_cubit.dart';
+import '../../../bloc/player_bloc/audio_player_repo_cubit.dart';
+import '../../../constants.dart';
 import '../../../widgets/myTextWidget.dart';
 
 class TitleAndFavIcon extends StatefulWidget {

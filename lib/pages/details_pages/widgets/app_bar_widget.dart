@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui_challenge/widgets/myTextWidget.dart';
+
+import '../../../widgets/myTextWidget.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;

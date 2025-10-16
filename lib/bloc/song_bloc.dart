@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:ui_challenge/pages/home_page/home_page.dart';
 
+import '../pages/home_page/home_page.dart';
 import 'give_permission_page.dart';
 
 part 'song_event.dart';
@@ -25,8 +25,10 @@ class SongBloc extends Bloc<SongEvent, SongState> {
   ) async {
     try {
       const storagePermission = Permission.storage;
+      const audioPermission = Permission.audio;
       final result = await storagePermission.request();
-      if (result.isGranted) {
+      final result2 = await audioPermission.request();
+      if (result.isGranted || result2.isGranted) {
         final audioQuery = OnAudioQuery();
 
         final albums = await audioQuery.queryAlbums();
@@ -66,8 +68,8 @@ class SongBloc extends Bloc<SongEvent, SongState> {
         }
       }
     } catch (e) {
-      print("eror2");
-      print(e.toString());
+      debugPrint("eror2");
+      debugPrint(e.toString());
     }
   }
 }

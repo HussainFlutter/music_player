@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:copy_music_player/pages/details_pages/widgets/albums_LVB.dart';
+import 'package:copy_music_player/pages/details_pages/widgets/app_bar_widget.dart';
+import 'package:copy_music_player/pages/details_pages/widgets/no_foo_found.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:ui_challenge/pages/details_pages/widgets/albums_LVB.dart';
-import 'package:ui_challenge/pages/details_pages/widgets/app_bar_widget.dart';
-import 'package:ui_challenge/pages/details_pages/widgets/no_foo_found.dart';
+
 
 class AlbumsPage extends StatelessWidget {
   final List<AlbumModel>? albums;

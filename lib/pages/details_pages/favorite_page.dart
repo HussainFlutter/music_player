@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ui_challenge/constants.dart';
-import 'package:ui_challenge/favorite_song_model.dart';
-import 'package:ui_challenge/main.dart';
-import 'package:ui_challenge/pages/details_pages/widgets/custom_list_tile.dart';
-import 'package:ui_challenge/pages/details_pages/widgets/no_foo_found.dart';
-import 'package:ui_challenge/widgets/dialog.dart';
-import 'package:ui_challenge/widgets/myTextWidget.dart';
+import 'package:copy_music_player/constants.dart';
+import 'package:copy_music_player/pages/details_pages/widgets/custom_list_tile.dart';
+import 'package:copy_music_player/pages/details_pages/widgets/no_foo_found.dart';
+
 
 import '../../bloc/player_bloc/audio_player_repo_cubit.dart';
 import '../../bloc/player_bloc/duration_cubit.dart';
+import '../../favorite_song_model.dart' show FavoriteSongModel;
+import '../../main.dart';
+import '../../widgets/dialog.dart';
+import '../../widgets/myTextWidget.dart';
 import '../player_page/player_page.dart';
 import 'widgets/app_bar_widget.dart';
 

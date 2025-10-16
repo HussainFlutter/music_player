@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ui_challenge/constants.dart';
-import 'package:ui_challenge/widgets/myTextWidget.dart';
+import 'package:copy_music_player/constants.dart';
+import 'package:copy_music_player/widgets/myTextWidget.dart';
+
 
 class MyAlertDialog extends StatelessWidget {
   final VoidCallback onYesTap;
@@ -34,7 +35,7 @@ class MyAlertDialog extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () => Navigator.pop(context),
-                child: const MyText(text: "No"),
+                child:  const MyText(text: "No",textColor: ColorsConsts.primaryColor,),
               ),
             ],
           ),

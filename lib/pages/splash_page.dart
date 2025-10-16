@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ui_challenge/bloc/song_bloc.dart';
-import 'package:ui_challenge/constants.dart';
+
+import '../bloc/song_bloc.dart';
+import '../constants.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

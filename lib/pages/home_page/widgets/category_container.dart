@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_challenge/constants.dart';
-import 'package:ui_challenge/widgets/myTextWidget.dart';
+import 'package:copy_music_player/constants.dart';
+
+import '../../../widgets/myTextWidget.dart';
+
 
 class CategoryContainer extends StatelessWidget {
   final String title;

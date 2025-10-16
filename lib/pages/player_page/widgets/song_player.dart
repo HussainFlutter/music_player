@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:ui_challenge/bloc/player_bloc/duration_cubit.dart';
 
+import '../../../bloc/player_bloc/duration_cubit.dart';
 import '../../../constants.dart';
 
 class SongPlayer extends StatefulWidget {

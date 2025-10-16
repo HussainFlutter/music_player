@@ -1,6 +1,6 @@
 {
-    "name": "ui_challenge",
-    "short_name": "ui_challenge",
+    "name": "copy_music_player",
+    "short_name": "copy_music_player",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
