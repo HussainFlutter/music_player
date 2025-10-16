@@ -115,7 +115,7 @@ class _PlayerPageState extends State<PlayerPage> {
                       context
                           .read<AudioPlayerRepoCubit>()
                           .startShuffle(context, !state.isShuffling);
-                      if(!state.isShuffling)
+                      if(!state.isShuffling == true)
                         {
                           "Shuffle On".showSnackBar(context: context);
                         }
