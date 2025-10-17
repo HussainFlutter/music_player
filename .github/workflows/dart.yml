@@ -1,4 +1,0 @@
-- name: Check Flutter & Dart version
-  run: |
-    flutter --version
-    dart --version

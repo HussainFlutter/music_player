@@ -1,46 +1,16 @@
-# Music Player App  
+# copy_music_player
 
-A sleek and feature-rich music player app that organizes and plays audio files from your phone. Designed for a seamless listening experience, this app offers advanced playback controls, customizable playlists, and intuitive audio organization.  
+A new Flutter project.
 
----
-## Demo Links
-- **App Demo (LinkedIn)**: [Music Player](https://www.linkedin.com/posts/hussain-ali-0805b8282_flutter-activity-7188939882101166082-R7fU?utm_source=share&utm_medium=member_desktop)
----
-## Features  
+## Getting Started
 
-### **Audio Organization**  
-- Automatically fetches audio files from your phone.  
-- Organizes tracks into:  
-  - **Tracks**: Displays all audio files.  
-  - **Albums**: Grouped by folders.  
-  - **Artists**: Categorized by artist metadata.  
-  - **Genres**: Grouped by genres.  
-  - **Favorites**: Your favorite tracks.  
-  - **Playlists**: Custom playlists created by you.  
+This project is a starting point for a Flutter application.
 
-### **Playback Controls**  
-- Play, pause, and resume audio tracks.  
-- Navigate through your music with:  
-  - **Forward 10 seconds**.  
-  - **Rewind 10 seconds**.  
-  - **Next song**.  
-  - **Previous song**.  
-- **Repeat Options**:  
-  - Repeat the current song once.  
-  - Repeat the entire folder/album.  
-- **Shuffle**: Randomize your playback for variety.  
+A few resources to get you started if this is your first Flutter project:
 
-### **Favorites**  
-- **Heart Icon**: Mark a track as a favorite by tapping the heart icon.  
-- Easily access all your favorite tracks in the **Favorites** section.  
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-### **Background Playback**  
-- Continue enjoying your music even when:  
-  - The app is in the background.  
-  - The phone is locked.  
-- Control playback via the **foreground notification**:  
-  - Play/Pause.  
-  - Next/Previous track.  
-
----
-
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
